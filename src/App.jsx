@@ -1,14 +1,10 @@
-import Header from './components/layouts/Header'
-import HomeBanner from './components/layouts/HomeBanner'
+import Home from './pages/Home/Home'
 
-function App() {
+export default function App() {
 
   return (
     <>
-      <Header />
-      <HomeBanner />
+      <Home />
     </>
   )
 }
-
-export default App
