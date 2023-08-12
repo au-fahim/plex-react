@@ -38,7 +38,7 @@
 
 @layer components {
   .main_wrapper {
-    @apply max-w-7xl mx-auto px-4
+    @apply max-w-7xl mx-auto md:px-4
   }
 
   .home_banner {
@@ -70,11 +70,11 @@
 
   /* CUSTOM CAROUSEL STYLE */
   .carousel_header {
-    @apply flex flex-row items-center justify-between mb-2 md:mb-4
+    @apply flex flex-row items-center justify-between mb-4 px-4 md:px-0 md:mb-6
   }
 
   .carousel_title {
-    @apply text-lg md:text-2xl text-gray-50 font-semibold
+    @apply text-xl sm:text-2xl text-gray-50 font-semibold
   }
 
   .carousel_controller {
@@ -82,6 +82,14 @@
   }
 
   .carousel_contents {
-    @apply flex flex-row gap-4 overflow-x-auto
+    @apply flex flex-row gap-4 overflow-x-auto pb-2 px-4 md:px-0
+  }
+
+  .carousel_item {
+    @apply flex-shrink-0 bg-cover bg-center rounded-md mb-2 transition-all duration-300 ease-in-out hover:bg-opacity-5 border border-white/0 hover:border-white
+  }
+
+  .cart_playbtn {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-in text-white drop-shadow-xl group-hover/card:scale-125 group-hover/card:text-yellow-400
   }
 }

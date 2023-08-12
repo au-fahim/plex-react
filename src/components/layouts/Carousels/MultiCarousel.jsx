@@ -2,7 +2,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import MainWrapper from "../MainWrapper";
-import CarouselItem from "./CarouselItem";
+// import CarouselItem from "./Carousel_Item";
 import CustomButtonGroup from "../../ui/CustomButtonGroup";
 
 
@@ -83,14 +83,14 @@ export default function MultiCarousel({ title, thums }) {
             slidesToSlide={3}
             swipeable
           >
-            {movies.map((item, index) => (
+            {/* {movies.map((item, index) => (
               <CarouselItem
                 key={index}
                 id={index}
                 src={item.img}
                 alt={item.alt}
               />
-            ))}
+            ))} */}
           </Carousel>
         </div>
       </MainWrapper>

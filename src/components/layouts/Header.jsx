@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className="rounded-md sticky top-0 z-50 bg-black/40 backdrop-blur-md">
       <MainWrapper>
-        <div className="text-white flex items-center justify-center lg:justify-between">
+        <div className="text-white flex items-center justify-center lg:justify-between px-4 md:px-0">
           {/* LEFT */}
           <div className="flex flex-row gap-0 lg:gap-4 items-center justify-between w-full lg:w-auto lg:justify-start">
             {/* LOGO */}

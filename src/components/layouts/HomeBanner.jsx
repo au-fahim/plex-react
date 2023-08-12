@@ -6,7 +6,7 @@ export default function HomeBanner() {
     <section className="home_banner">
       <MainWrapper>
         <div className="home_banner__container">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
             Go ahead, stream free
           </h1>
           <p className="pb-2 text-gray-400 text-sm md:text-base lg:text-lg">
