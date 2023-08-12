@@ -7,6 +7,26 @@
     @apply bg-black/90
   }
 
+  /* width */
+  ::-webkit-scrollbar {
+    @apply h-2 w-2
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply rounded-full w-3
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-white/10
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/70
+  }
+
   nav > a:hover {
     @apply text-white
   }
@@ -19,6 +39,14 @@
 @layer components {
   .main_wrapper {
     @apply max-w-7xl mx-auto px-4
+  }
+
+  .home_banner {
+    @apply h-[80vh] overflow-hidden relative bg-gradient-to-t lg:bg-gradient-to-r from-black from-50% sm:from-30% md:from-10% via-black/80 to-transparent
+  }
+
+  .home_banner__container {
+    @apply w-11/12 sm:max-w-lg flex flex-col items-center text-center lg:text-left lg:items-start gap-3 sm:gap-6 absolute left-1/2 -translate-x-1/2 lg:left-auto lg:-translate-x-0 top-1/2 -translate-y-1/4 lg:-translate-y-1/2 text-white
   }
 
   .btn_sm {
@@ -39,4 +67,21 @@
     @apply bg-yellow-500/90
   }
   
+
+  /* CUSTOM CAROUSEL STYLE */
+  .carousel_header {
+    @apply flex flex-row items-center justify-between mb-2 md:mb-4
+  }
+
+  .carousel_title {
+    @apply text-lg md:text-2xl text-gray-50 font-semibold
+  }
+
+  .carousel_controller {
+    @apply hidden md:flex flex-row gap-3 md:gap-6 absolute top-0 right-0
+  }
+
+  .carousel_contents {
+    @apply flex flex-row gap-4 overflow-x-auto
+  }
 }

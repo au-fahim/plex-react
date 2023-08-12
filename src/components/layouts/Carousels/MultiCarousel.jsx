@@ -15,10 +15,8 @@ export default function MultiCarousel({ title, thums }) {
     <section>
       <MainWrapper>
         <div className="relative">
-          <header className="flex flex-row items-center justify-between mb-2 md:mb-4">
-            <a className="text-lg md:text-2xl text-gray-50 font-semibold">
-              {title}
-            </a>
+          <header className="carousel_header">
+            <a className="carousel_title">{title}</a>
           </header>
 
           {/* SLIDER CONTENT */}
@@ -28,7 +26,7 @@ export default function MultiCarousel({ title, thums }) {
             autoPlaySpeed={3000}
             centerMode={false}
             className=""
-            itemClass="pr-2 md:pr-4 lg:pr-6"
+            itemClass="pr-2 md:pr-4 lg:pr-4"
             containerClass="container"
             customButtonGroup={<CustomButtonGroup />}
             dotListClass=""
@@ -48,8 +46,8 @@ export default function MultiCarousel({ title, thums }) {
                   max: 3000,
                   min: 1024,
                 },
-                items: 7,
-                partialVisibilityGutter: 40,
+                items: 6,
+                partialVisibilityGutter: 50,
               },
               laptop: {
                 breakpoint: {
