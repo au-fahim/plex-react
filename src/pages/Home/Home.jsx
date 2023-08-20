@@ -1,8 +1,6 @@
-import MultiCarousel from "../../components/layouts/Carousels/MultiCarousel";
-import Header from "../../components/layouts/Header";
 import HomeBanner from "../../components/layouts/HomeBanner";
-import MainWrapper from "../../components/layouts/MainWrapper";
 import Carousel from "../../components/layouts/custom_carousel/Carousel";
+import { useFetch } from "../../hooks/useFetch";
 
 
 const thumb = [
@@ -17,11 +15,15 @@ const thumb = [
   { img: "/card_bg/4.avif", alt: "TV Show 4" },
   { img: "/card_bg/5.avif", alt: "TV Show 5" },
 ]
-
 import { movies } from "../../movie";
 
 
 export default function Home() {
+
+  const { data } = useFetch("/movie/popular")
+
+  console.log(data?.results);
+
   return (
     <>
       <HomeBanner />
