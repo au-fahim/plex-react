@@ -1,6 +1,6 @@
-import HomeBanner from "../../components/layouts/HomeBanner";
+import HomeBanner from "./home_banner/HomeBanner";
 import Carousel from "../../components/layouts/custom_carousel/Carousel";
-import { useFetch } from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
 
 const thumb = [
@@ -19,10 +19,7 @@ import { movies } from "../../movie";
 
 
 export default function Home() {
-
   const { data } = useFetch("/movie/popular")
-
-  console.log(data?.results);
 
   return (
     <>

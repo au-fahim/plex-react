@@ -1,6 +1,7 @@
 import Img from "../../ui/Img";
 
-export default function CarouselItem({ id, imgSrc, altText }) {
+export default function CarouselItem(prop) {
+  const { id, imgSrc, altText } = prop
   return (
     <div
       key={id}

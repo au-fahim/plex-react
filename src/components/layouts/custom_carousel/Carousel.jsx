@@ -2,9 +2,11 @@ import MainWrapper from "../MainWrapper";
 
 import { HiChevronLeft, HiChevronRight, HiPlay } from "react-icons/hi2";
 import Img from './../../ui/Img';
-import { PlayBtn } from "../../ui/PlayBtn";
+// import { PlayBtn } from "../../ui/PlayBtn";
 
-export default function Carousel({ data, title, ScrollCoverBg, landscapeCard }) {
+export default function Carousel(prop) {
+  const { data, title, ScrollCoverBg, landscapeCard } = prop;
+
   return (
     <>
       <MainWrapper>
