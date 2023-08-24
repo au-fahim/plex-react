@@ -9,15 +9,22 @@ import useFetch from "../../../hooks/useFetch";
 
 export default function HomeBanner() {
   const [randomBg, setRandomBg] = useState("")
+  const [randomVideo, setRandomVideo] = useState(null)
+  
   const { data, loading } = useFetch("/movie/upcoming")
   const { url } = useSelector((state) => state.home)
 
   useEffect(() => {
+    const randomNum = Math.floor(Math.random() * 19)
+    
+    const randomOne = data?.results?.[randomNum]
     const bg_path =
       url?.backdrop +
-      data?.results?.[Math.floor(Math.random() * 19)]?.backdrop_path;
+      data?.results?.[randomNum]?.backdrop_path;
     
+    console.log(randomOne);
     setRandomBg(bg_path)
+    setRandomVideo(randomOne)
   }, [data])
 
   
