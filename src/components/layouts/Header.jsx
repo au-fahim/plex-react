@@ -4,20 +4,22 @@ import MainWrapper from './MainWrapper';
 
 import { BiSearchAlt } from "react-icons/bi";
 import { HiBars3 } from "react-icons/hi2";
+import { useNavigate } from 'react-router';
 
 export default function Header() {
+  const navigate = useNavigate()
   const [isSearchInputFocus, setIsSearchInputFocus] = useState(false)
 
   return (
-    <header className="rounded-md fixed w-full top-0 z-50 bg-black/40 backdrop-blur-md">
+    <header className="fixed w-full top-0 z-50 bg-transparent sm:bg-black/40 backdrop-blur-0 sm:backdrop-blur-md">
       <MainWrapper>
         <div className="text-white flex items-center justify-center lg:justify-between px-4 md:px-0">
           {/* LEFT */}
           <div className="flex flex-row gap-0 lg:gap-4 items-center justify-between w-full lg:w-auto lg:justify-start">
             {/* LOGO */}
-            <a href="/">
+            <button onClick={() => navigate("/")}>
               <Plex className="pr-12" />
-            </a>
+            </button>
 
             {/* SEARCH BAR */}
             <div

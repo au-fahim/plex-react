@@ -19,8 +19,7 @@ export default function HomeBanner() {
     
     const randomOne = data?.results?.[randomNum]
     const bg_path =
-      url?.backdrop +
-      data?.results?.[randomNum]?.backdrop_path;
+      url?.backdrop_w780 + data?.results?.[randomNum]?.backdrop_path;
     
     console.log(randomOne);
     setRandomBg(bg_path)
@@ -33,14 +32,13 @@ export default function HomeBanner() {
       <section className="home_banner">
         <MainWrapper>
           <div className="home_banner__container">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-              Go ahead, stream free
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold line-clamp-2">
+              {randomVideo?.title}
             </h1>
-            <p className="pb-2 text-gray-400 text-sm md:text-base lg:text-lg">
-              With Plex you can watch over 20,000 free movies and shows, plus
-              Live TV on almost any device. What are you waiting for?
+            <p className="pb-2 text-gray-400 text-sm md:text-base lg:text-lg line-clamp-3">
+              {randomVideo?.overview}
             </p>
-            <button className="btn_md primary_btn">Sign Up</button>
+            <button className="btn_md primary_btn">Watch Trailor</button>
           </div>
         </MainWrapper>
 

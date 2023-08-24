@@ -86,7 +86,7 @@
   }
 
   .carousel_item {
-    @apply flex-shrink-0 bg-cover bg-center rounded-md mb-2 transition-all duration-300 ease-in-out hover:bg-opacity-5 border border-white/0 hover:border-white
+    @apply flex-shrink-0 bg-cover bg-center bg-no-repeat rounded-md mb-2 transition-all duration-300 ease-in-out hover:bg-opacity-5 border-2 border-white/0 hover:border-gray-300
   }
 
   .cart_playbtn {

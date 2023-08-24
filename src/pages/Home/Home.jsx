@@ -17,84 +17,25 @@ const thumb = [
 ]
 import { movies } from "../../movie";
 
+import MovieSection from "./movie_tv_section/MovieSection";
+import TvSection from "./tv_section/TVSection";
+import MoviePlayCard from "./movie_play_cards/MoviePlayCard";
 
-export default function Home() {
-  const { data } = useFetch("/movie/popular")
+
+export default function Home() {  
 
   return (
     <>
       <HomeBanner />
       <main>
-        <section className="py-16 flex flex-col gap-6 md:gap-10">
-          <Carousel
-            data={movies}
-            title="Binge-Worthy Shows"
-            ScrollCoverBg="bg-[#191919]"
-          />
+        {/* Movie Related Carousels */}
+        <MovieSection />
 
-          <Carousel
-            data={movies}
-            title="Trending in Singapore"
-            ScrollCoverBg="bg-[#191919]"
-          />
+        {/* Playable Movie Card Carousel */}
+        <MoviePlayCard />
 
-          <Carousel
-            data={movies}
-            title="Based On a True Story"
-            ScrollCoverBg="bg-[#191919]"
-          />
-
-          {/* <MultiCarousel title="Binge-Worthy Shows" />
-          <MultiCarousel title="Trending in Singapore" />
-          <MultiCarousel title="Based On a True Story" /> */}
-
-          <div className="flex flex-row justify-center mt-4">
-            <button className="btn_md primary_btn">Explore More Movies</button>
-          </div>
-        </section>
-
-        <section className="bg-black/70 py-16 flex flex-col gap-6 md:gap-10">
-          <Carousel
-            data={thumb}
-            title="Featured TV Shows"
-            ScrollCoverBg="bg-[#070707]"
-            landscapeCard={true}
-          />
-
-          <div className="flex flex-row justify-center mt-4">
-            <button className="btn_md primary_btn">
-              Explore More TV Shows
-            </button>
-          </div>
-        </section>
-
-        <section className="py-16 flex flex-col gap-6 md:gap-10">
-          <Carousel
-            data={movies}
-            title="Binge-Worthy Shows"
-            ScrollCoverBg="bg-[#191919]"
-          />
-
-          <Carousel
-            data={movies}
-            title="Trending in Singapore"
-            ScrollCoverBg="bg-[#191919]"
-          />
-
-          <Carousel
-            data={movies}
-            title="Based On a True Story"
-            ScrollCoverBg="bg-[#191919]"
-          />
-
-          {/* <MultiCarousel title="Binge-Worthy Shows" />
-          <MultiCarousel title="Trending in Singapore" />
-          <MultiCarousel title="Based On a True Story" /> */}
-
-          <div className="flex flex-row justify-center mt-4">
-            <button className="btn_md primary_btn">Explore More Movies</button>
-          </div>
-        </section>
+        {/* TV Shows Related Carousels */}
+        <TvSection />
       </main>
     </>
   );

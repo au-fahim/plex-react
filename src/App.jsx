@@ -22,7 +22,9 @@ export default function App() {
   const fetchApiConfig = async () => {
     getDataFromApi("/configuration").then((res) => {
       const url = {
-        backdrop: res?.images?.secure_base_url + "w780",
+        backdrop_w1280: res?.images?.secure_base_url + "w1280",
+        backdrop_w780: res?.images?.secure_base_url + "w780",
+        backdrop_w300: res?.images?.secure_base_url + "w300",
         poster: res?.images?.secure_base_url + "w342",
         profile: res?.images?.secure_base_url + "w185",
       };
