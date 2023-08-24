@@ -9,7 +9,7 @@ export default function Header() {
   const [isSearchInputFocus, setIsSearchInputFocus] = useState(false)
 
   return (
-    <header className="rounded-md sticky top-0 z-50 bg-black/40 backdrop-blur-md">
+    <header className="rounded-md fixed w-full top-0 z-50 bg-black/40 backdrop-blur-md">
       <MainWrapper>
         <div className="text-white flex items-center justify-center lg:justify-between px-4 md:px-0">
           {/* LEFT */}

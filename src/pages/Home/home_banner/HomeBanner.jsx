@@ -38,7 +38,9 @@ export default function HomeBanner() {
         </MainWrapper>
 
         <div className="w-full lg:w-auto lg:h-full absolute right-0 top-0 -z-30">
-          <img src={randomBg} className="h-full" alt="Home Banner Image" />
+          {!loading && (
+            <img src={randomBg} className="h-full" alt="Home Banner Image" />
+          )}
         </div>
       </section>
     </>

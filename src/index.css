@@ -42,7 +42,7 @@
   }
 
   .home_banner {
-    @apply h-[80vh] overflow-hidden relative bg-gradient-to-t lg:bg-gradient-to-r from-black from-50% sm:from-30% md:from-10% via-black/80 to-transparent
+    @apply h-[80vh] overflow-hidden relative bg-gradient-to-t lg:bg-gradient-to-r from-black from-50% sm:from-30% md:from-30% via-black/80 to-transparent
   }
 
   .home_banner__container {
