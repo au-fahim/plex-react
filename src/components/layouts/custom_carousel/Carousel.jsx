@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { HiChevronLeft, HiChevronRight, HiPlay } from "react-icons/hi2";
 
@@ -12,7 +12,22 @@ import useFetch from "../../../hooks/useFetch";
 export default function Carousel({ title, endpoints, videoPlayableCard, getBgPath }) {
   const { data, loading } = useFetch(endpoints);
   const { url } = useSelector((state) => state.home);
+  const carouselContainer = useRef()
 
+  // Carousel Left & Right Scroll Function
+  const scrollDirection = (dir) => {
+    const container = carouselContainer.current
+
+    const scrollAmount =
+      dir === "left"
+        ? container.scrollLeft - (container.offsetWidth - 100)
+        : container.scrollLeft + (container.offsetWidth - 100);
+    
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth"
+    })
+  }
 
   return (
     <>
@@ -20,14 +35,20 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
         <div className="overflow-hidden relative group w-full">
           {/* CAROUSEL HEADER SECTION */}
           <header className="carousel_header">
-            <h1 className="carousel_title">{title}</h1>
+            {!!title && <h1 className="carousel_title">{title}</h1>}
 
-            {/* CAROUSEL LEFT & RIGHT MOVE CONTROLLER */}
+            {/* CAROUSEL LEFT & RIGHT SCROLLING CONTROLLER */}
             <div className="carousel_controller">
-              <button className="icon_btn">
+              <button
+                className="icon_btn"
+                onClick={() => scrollDirection("left")}
+              >
                 <HiChevronLeft size={22} />
               </button>
-              <button className="icon_btn">
+              <button
+                className="icon_btn"
+                onClick={() => scrollDirection("right")}
+              >
                 <HiChevronRight size={22} />
               </button>
             </div>
@@ -36,7 +57,7 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
           {/* CAROUSEL ITEMS CONTAINER */}
           <section>
             {!loading ? (
-              <div className="carousel_contents">
+              <div className="carousel_contents" ref={carouselContainer}>
                 {data?.results?.map((item, index) => {
                   return (
                     <div
@@ -78,7 +99,16 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
                 })}
               </div>
             ) : (
-              <div>Loading...</div>
+              <div className="carousel_contents">
+                <div className="carousel_item"></div>
+                <div className="carousel_item"></div>
+                <div className="carousel_item"></div>
+                <div className="carousel_item"></div>
+                <div className="carousel_item"></div>
+                <div className="carousel_item"></div>
+                <div className="carousel_item"></div>
+                <div className="carousel_item"></div>
+              </div>
             )}
           </section>
 
