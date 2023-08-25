@@ -52,7 +52,7 @@ export default function HomeBanner() {
 
         {!loading && (
           <div
-            className="w-full h-full absolute right-0 top-0 -z-30 bg-cover bg-center bg-no-repeat"
+            className="w-full h-full absolute right-0 top-0 -z-30 bg-cover bg-center xl:bg-top bg-no-repeat"
             style={{ backgroundImage: `url(${randomBg})` }}
           />
         )}
