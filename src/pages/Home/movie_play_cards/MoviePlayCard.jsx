@@ -12,7 +12,7 @@ export default function MoviePlayCard() {
   useEffect(() => {
     const bg_path =
       url?.backdrop_w1280 +
-      data?.results?.[Math.floor(Math.random() * 19)]?.backdrop_path;
+      data?.results?.[0]?.backdrop_path;
     
     setRandomBg(bg_path)
   }, [data])
@@ -32,9 +32,12 @@ export default function MoviePlayCard() {
         getBgPath={getBgPath}
       />
 
-      <div className="absolute w-full top-0 left-0 h-full -z-30">
-        {!loading && <img src={randomBg} alt="Background Image" className="w-full" />}
-      </div>
+      {!loading && (
+        <div
+          className="absolute w-full top-0 left-0 h-full -z-30 bg-center bg-cover bg-no-repeat duration-300 ease-out"
+          style={{backgroundImage: `url(${randomBg})`}}
+        />
+      )}
     </section>
   );
 }

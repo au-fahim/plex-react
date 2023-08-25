@@ -9,8 +9,9 @@ import Header from "./components/layouts/Header";
 import Home from './pages/Home/Home'
 import Details from './pages/details/Details';
 import Explore from './pages/explore/Explore';
-import SearchResult from './pages/search_result/SearchResult';
+import SearchResult from './components/layouts/search_result/SearchResult';
 import PageNotFound from './pages/404/PageNotFound';
+import Footer from './components/layouts/Footer';
 
 export default function App() {
   const dispatch = useDispatch()
@@ -36,15 +37,17 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:mediaType/:id" element={<Details />} />
-          <Route path="/explore/:mediaType" element={<Explore />} />
-          <Route path="/search/:query" element={<SearchResult />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+        <div className='flex flex-col justify-between min-h-screen'>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:mediaType/:id" element={<Details />} />
+            <Route path="/explore/:mediaType" element={<Explore />} />
+            {/* <Route path="/search/:query" element={<SearchResult />} /> */}
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+          <Footer />
+        </div>
       </BrowserRouter>
     </>
   );

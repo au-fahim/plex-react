@@ -35,7 +35,15 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
         <div className="overflow-hidden relative group w-full">
           {/* CAROUSEL HEADER SECTION */}
           <header className="carousel_header">
-            {!!title && <h1 className="carousel_title">{title}</h1>}
+            {!!title && (
+              <h1
+                className={`carousel_title ${
+                  !!videoPlayableCard && "text-2xl sm:text-3xl"
+                }`}
+              >
+                {title}
+              </h1>
+            )}
 
             {/* CAROUSEL LEFT & RIGHT SCROLLING CONTROLLER */}
             <div className="carousel_controller">
@@ -62,15 +70,12 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
                   return (
                     <div
                       key={index}
-                      onLoad={() =>
-                        videoPlayableCard && getBgPath(item?.backdrop_path)
-                      }
                       onMouseEnter={() =>
                         videoPlayableCard && getBgPath(item?.backdrop_path)
                       }
                       className={`carousel_item group/card ${
                         !!videoPlayableCard
-                          ? "shadow-md w-full sm:w-1/2 md:w-1/3 relative hover:scale-95 hover:border-yellow-500"
+                          ? "shadow-md w-3/4 sm:w-1/2 md:w-1/3 relative hover:scale-95 hover:border-yellow-500"
                           : "w-2/5 sm:w-1/4 md:w-1/5 lg:w-1/6 xl:w-52"
                       }`}
                       style={{

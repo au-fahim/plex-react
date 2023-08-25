@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import MainWrapper from "../../../components/layouts/MainWrapper";
 import bg from "/bg.jpg";
 import useFetch from "../../../hooks/useFetch";
+import Img from "../../../components/ui/Img";
 
 
 export default function HomeBanner() {
@@ -32,21 +33,29 @@ export default function HomeBanner() {
       <section className="home_banner">
         <MainWrapper>
           <div className="home_banner__container">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold line-clamp-2">
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold line-clamp-2"
+              title={randomVideo?.title}
+            >
               {randomVideo?.title}
             </h1>
-            <p className="pb-2 text-gray-400 text-sm md:text-base lg:text-lg line-clamp-3">
+            
+            <p
+              className="mb-2 text-gray-400 text-sm md:text-base lg:text-lg line-clamp-3"
+              title={randomVideo?.overview}
+            >
               {randomVideo?.overview}
             </p>
             <button className="btn_md primary_btn">Watch Trailor</button>
           </div>
         </MainWrapper>
 
-        <div className="w-full lg:w-auto lg:h-full absolute right-0 top-0 -z-30">
-          {!loading && (
-            <img src={randomBg} className="h-full" alt="Home Banner Image" />
-          )}
-        </div>
+        {!loading && (
+          <div
+            className="w-full h-full absolute right-0 top-0 -z-30 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${randomBg})` }}
+          />
+        )}
       </section>
     </>
   );

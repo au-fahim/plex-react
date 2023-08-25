@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Plex from '../../assets/Plex';
 import MainWrapper from './MainWrapper';
 
@@ -11,41 +11,51 @@ export default function Header() {
   const [isSearchInputFocus, setIsSearchInputFocus] = useState(false)
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-transparent sm:bg-black/40 backdrop-blur-0 sm:backdrop-blur-md">
+    <header className="fixed w-full top-0 z-50 bg-transparent sm:bg-black/40 backdrop-blur-md shadow-md">
       <MainWrapper>
         <div className="text-white flex items-center justify-center lg:justify-between px-4 md:px-0">
+          
           {/* LEFT */}
           <div className="flex flex-row gap-0 lg:gap-4 items-center justify-between w-full lg:w-auto lg:justify-start">
+            
             {/* LOGO */}
             <button onClick={() => navigate("/")}>
               <Plex className="pr-12" />
             </button>
 
             {/* SEARCH BAR */}
-            <div
-              id="nav_search_wrapper"
-              className={`hidden sm:flex flex-row items-center relative h-8 rounded-full overflow-hidden w-full md:w-96 lg:w-64 xl:w-96 ${
-                isSearchInputFocus ? "bg-white text-black" : "bg-white/10"
-              }`}
-            >
-              <BiSearchAlt className="absolute left-3" />
-
-              <input
-                type="search"
-                id="nav_search"
-                className="bg-transparent pl-10 pr-4 text-sm outline-none w-full"
-                onFocus={() => setIsSearchInputFocus(true)}
-                onBlur={() => setIsSearchInputFocus(false)}
-                placeholder="Find Movies & TV"
-              />
-            </div>
+            <form>
+              <div
+                id="nav_search_wrapper"
+                className={`hidden md:flex flex-row items-center relative h-8 rounded-full overflow-hidden w-full md:w-96 lg:w-64 xl:w-96 ${
+                  isSearchInputFocus ? "bg-white text-black" : "bg-white/10"
+                }`}
+              >
+                <BiSearchAlt className="absolute left-3" />
+                <input
+                  type="search"
+                  id="nav_search"
+                  className="bg-transparent pl-10 pr-4 text-sm outline-none w-full"
+                  onChange={async (e) => {
+                    // e.target.value === ""
+                    //   ? navigate("/")
+                    //   : navigate(`/search/${e.target.value}`);
+                  }}
+                  onFocus={() => setIsSearchInputFocus(true)}
+                  onBlur={() => setIsSearchInputFocus(false)}
+                  placeholder="Find Movies & TV"
+                />
+              </div>
+            </form>
 
             {/* FOR MOBILE MENU */}
             <div className="flex lg:hidden flex-row gap-4 items-center pl-12">
+
               {/* MOBILE-VIEW SEARCH ICON */}
-              <div className="cursor-pointer sm:hidden">
+              <div className="cursor-pointer md:hidden">
                 <BiSearchAlt size={18} />
               </div>
+
               {/* MOBILE-VIEW NAVIGATION NANU */}
               <div className="cursor-pointer lg:hidden">
                 <HiBars3 size={22} />
