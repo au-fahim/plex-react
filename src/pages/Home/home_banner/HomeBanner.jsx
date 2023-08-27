@@ -20,7 +20,7 @@ export default function HomeBanner() {
     
     const randomOne = data?.results?.[randomNum]
     const bg_path =
-      url?.backdrop_w780 + data?.results?.[randomNum]?.backdrop_path;
+      url?.backdrop_w1280 + data?.results?.[randomNum]?.backdrop_path;
     
     console.log(randomOne);
     setRandomBg(bg_path)
@@ -34,14 +34,14 @@ export default function HomeBanner() {
         <MainWrapper>
           <div className="home_banner__container">
             <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold line-clamp-2"
+              className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-bold line-clamp-2"
               title={randomVideo?.title}
             >
               {randomVideo?.title}
             </h1>
             
             <p
-              className="mb-2 text-gray-400 text-sm md:text-base lg:text-lg line-clamp-3"
+              className="mb-2 text-gray-400 text-sm md:text-base lg:text-lg 2xl:text-xl line-clamp-3"
               title={randomVideo?.overview}
             >
               {randomVideo?.overview}

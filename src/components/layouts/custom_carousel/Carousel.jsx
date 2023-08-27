@@ -38,7 +38,7 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
             {!!title && (
               <h1
                 className={`carousel_title ${
-                  !!videoPlayableCard && "text-2xl sm:text-3xl"
+                  !!videoPlayableCard && "text-2xl sm:text-3xl 2xl:text-4xl"
                 }`}
               >
                 {title}
