@@ -44,7 +44,7 @@ export default function Header() {
   }, [isSearchInputFocus])
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-transparent sm:bg-black/50 backdrop-blur-md shadow-md">
+    <header className="fixed w-full top-0 z-50 bg-transparent bg-black/50 backdrop-blur-md shadow-md">
       <MainWrapper>
         <div className="text-white flex items-center justify-center lg:justify-between px-4 md:px-0">
           {/* |>|>|>|>|>|>|>|>|> LEFT SIDE <|<|<|<|<|<|<|<| */}
@@ -61,7 +61,7 @@ export default function Header() {
             <form className={`relative`} onSubmit={(e) => e.preventDefault()}>
               <div
                 id="nav_search_wrapper"
-                className={`desktop_search_bar ${
+                className={`desktop_search_bar transition ease-in-out ${
                   showSearchBar
                     ? "w-11/12 visible fixed top-2 left-1/2 -translate-x-1/2 z-50"
                     : "invisible md:visible"
