@@ -42,11 +42,15 @@
   }
 
   .home_banner {
-    @apply h-[460px] md:h-[560px] 2xl:h-[680px] overflow-hidden relative bg-gradient-to-t lg:bg-gradient-to-r from-black from-50% sm:from-30% md:from-30% via-black/80 to-transparent
+    @apply h-screen lg:h-[560px] 2xl:h-[680px] overflow-hidden relative bg-gradient-to-t lg:bg-gradient-to-r from-black from-20% sm:from-30% md:from-30% via-black/80 to-transparent
   }
 
   .home_banner__container {
-    @apply w-11/12 sm:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl flex flex-col items-center text-center lg:text-left lg:items-start gap-4 sm:gap-6 xl:gap-8 absolute left-1/2 -translate-x-1/2 lg:left-auto lg:-translate-x-0 top-1/2 -translate-y-1/4 lg:-translate-y-1/2 text-white
+    @apply w-11/12 sm:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl flex flex-col items-center text-center lg:text-left lg:items-start gap-4 sm:gap-6 xl:gap-8 absolute left-1/2 -translate-x-1/2 lg:left-auto lg:-translate-x-0 top-2/3 lg:top-1/2 -translate-y-1/2 lg:-translate-y-1/2 text-white
+  }
+
+  .bgBannerImg {
+    @apply w-full h-full absolute right-0 top-0 -z-30 bg-cover lg:bg-contain 2xl:bg-cover bg-top lg:bg-right bg-no-repeat
   }
 
   .btn_sm {
@@ -67,6 +71,10 @@
     @apply bg-yellow-500/90
   }
   
+  /* HEADER */
+  .desktop_search_bar {
+    @apply flex md:flex flex-row items-center relative h-8 rounded-full w-full md:w-[550px] lg:w-[320px] xl:w-[460px]
+  }
 
   /* CUSTOM CAROUSEL STYLE */
   .carousel_header {
@@ -74,7 +82,7 @@
   }
 
   .carousel_title {
-    @apply text-xl sm:text-2xl 2xl:text-3xl text-gray-50 font-semibold
+    @apply text-2xl 2xl:text-3xl text-gray-50 font-semibold
   }
 
   .carousel_controller {
@@ -86,7 +94,7 @@
   }
 
   .carousel_item {
-    @apply flex-shrink-0 bg-cover bg-top bg-no-repeat rounded-lg mb-2 transition-all duration-200 ease-in-out hover:bg-opacity-5 border-2 border-white/0 hover:border-gray-300
+    @apply flex-shrink-0 bg-cover bg-top bg-no-repeat rounded-md mb-2 transition-all duration-200 ease-in-out hover:bg-opacity-5 border-2 border-white/0 hover:border-gray-300
   }
 
   .cart_playbtn {
