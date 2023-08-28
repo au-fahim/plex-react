@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import getDataFromApi from "../../../utils/api";
 
-import Skeleton from "react-loading-skeleton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import Spinner from "../../ui/Spinner";
@@ -65,7 +65,7 @@ export default function SearchResult({ queryText, setShowSearchResultModal }) {
   return (
     <div
       ref={topSearchBar}
-      className="absolute w-full bg-black/95 rounded-md top-10 duration-300 py-2 px-2 min-h-[200px] mb-2 shadow-lg"
+      className="fixed w-11/12 left-1/2 -translate-x-1/2 mt-2 md:mt-0 md:absolute md:w-full bg-black/95 rounded-md top-10 duration-300 py-2 px-2 min-h-[200px] mb-2 shadow-lg overflow-hidden"
     >
       {!loading ? (
         <>
@@ -76,7 +76,11 @@ export default function SearchResult({ queryText, setShowSearchResultModal }) {
                 hasMore={pageNumber <= data?.total_pages}
                 next={fetchNextPageData}
                 height={400}
-                loader={<Spinner />}
+                loader={
+                  <span className="flex items-center justify-center py-2">
+                    <Spinner />
+                  </span>
+                }
               >
                 {data?.results?.map((item, index) => {
                   let releaseDate = item?.release_date || item?.first_air_date;
@@ -131,11 +135,13 @@ export default function SearchResult({ queryText, setShowSearchResultModal }) {
           )}
         </>
       ) : (
-        <div className="h-48 flex flex-col gap-4 items-center ">
+        <div className="h-96 flex flex-col gap-6 items-center ">
           {/* <Spinner /> */}
-          <div className="w-full">
-            <Skeleton count={6} height={60} />
-          </div>
+          <SkeletonTheme baseColor="#202020" highlightColor="#fff">
+            <div className="w-full flex flex-col gap-4 animate-pulse duration-0 delay-0">
+              <Skeleton height={60} count={6} />
+            </div>
+          </SkeletonTheme>
         </div>
       )}
     </div>
