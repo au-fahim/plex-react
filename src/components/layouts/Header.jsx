@@ -44,7 +44,7 @@ export default function Header() {
   }, [isSearchInputFocus])
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-transparent bg-black/50 backdrop-blur-md shadow-md">
+    <header className="fixed w-full top-0 z-50 bg-black/50 backdrop-blur-md shadow-md">
       <MainWrapper>
         <div className="text-white flex items-center justify-center lg:justify-between px-4 md:px-0">
           {/* |>|>|>|>|>|>|>|>|> LEFT SIDE <|<|<|<|<|<|<|<| */}
