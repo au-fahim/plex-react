@@ -8,6 +8,7 @@ import MainWrapper from "../MainWrapper";
 import useFetch from "../../../hooks/useFetch";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import dayjs from "dayjs";
 
 
 export default function Carousel({ title, endpoints, videoPlayableCard, getBgPath }) {
@@ -32,11 +33,17 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
 
   const customSkeleton = () => {
     return (
-      <div
-        className={`bg-[#202020] rounded-md flex-shrink-0 ${
-          !!videoPlayableCard ? "h-40 w-60" : "h-60 w-40"
-        }`}
-      ></div>
+      <div className="flex-shrink-0 flex flex-col gap-3">
+        <div
+          className={`bg-[#202020] rounded-md ${
+            !!videoPlayableCard ? "h-40 w-60" : "h-60 w-40"
+          }`}
+        />
+        <div className="flex flex-col gap-2">
+          <div className="bg-[#202020] rounded-md h-5 w-32" />
+          <div className="bg-[#202020] rounded-md h-3 w-40" />
+        </div>
+      </div>
     );
   }
 
@@ -97,26 +104,21 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
                 </div>
               </SkeletonTheme>
             ) : (
-              <div className="carousel_contents" ref={carouselContainer}>
+              <div className="carousel_contents w-screen" ref={carouselContainer}>
                 {data?.results?.map((item, index) => {
+                  let releaseDate = item?.release_date || item?.first_air_date;
+
                   return (
                     <div
                       key={index}
                       onMouseEnter={() =>
                         videoPlayableCard && getBgPath(item?.backdrop_path)
                       }
-                      className={`carousel_item group/card ${
+                      className={`carousel_item group/card overflow-hidden ${
                         !!videoPlayableCard
-                          ? "shadow-md w-3/4 sm:w-1/2 md:w-1/3 relative hover:scale-95 hover:border-yellow-500"
-                          : "w-2/5 sm:w-1/4 md:w-1/5 lg:w-1/6 xl:w-52"
+                          ? "shadow-md w-3/4 sm:w-1/2 md:w-1/3 relative hover:scale-95"
+                          : "w-1/3 sm:w-1/4 md:w-1/5 lg:w-1/6 xl:w-52"
                       }`}
-                      // style={{
-                      //   backgroundImage: `url(${
-                      //     !!videoPlayableCard
-                      //       ? url?.backdrop_w780 + item?.backdrop_path
-                      //       : url?.poster + item?.poster_path
-                      //   })`,
-                      // }}
                     >
                       <Img
                         src={
@@ -124,11 +126,35 @@ export default function Carousel({ title, endpoints, videoPlayableCard, getBgPat
                             ? url?.backdrop_w780 + item?.backdrop_path
                             : url?.poster + item?.poster_path
                         }
-                        alt={item?.title}
-                        className="rounded-md"
+                        alt={item?.title || item?.name}
+                        className={`rounded-md h-full border-2 border-white/0 transition duration-200 ease-in-out ${
+                          !videoPlayableCard
+                            ? "hover:border-gray-300"
+                            : "hover:border-yellow-500"
+                        }`}
                       />
 
-                      {videoPlayableCard && (
+                      <div
+                        className={`w-full ${
+                          videoPlayableCard &&
+                          "absolute bottom-2 bg-gradient-to-t from-20% from-black/80 to-black/0 select-none"
+                        }`}
+                      >
+                        <article
+                          className={`text-white px-1 mb-2 ${
+                            videoPlayableCard && "mx-4 mb-4"
+                          }`}
+                        >
+                          <h1 className="font-medium text-base md:text-lg line-clamp-1">
+                            {item?.title || item?.name}
+                          </h1>
+                          <p className="text-xs md:text-sm text-gray-300">
+                            {dayjs(releaseDate).format("D  MMM, YYYY")}
+                          </p>
+                        </article>
+                      </div>
+
+                      {!!videoPlayableCard && (
                         <HiPlay
                           size={56}
                           className={`cart_playbtn ${loading && "hidden"}`}

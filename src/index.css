@@ -90,11 +90,11 @@
   }
 
   .carousel_contents {
-    @apply flex flex-row gap-4 overflow-x-auto pb-2 px-4 md:px-0
+    @apply w-full flex flex-row gap-4 overflow-x-auto pb-2 px-4 md:px-0
   }
 
   .carousel_item {
-    @apply flex-shrink-0 bg-cover bg-top bg-no-repeat rounded-md mb-2 transition-all duration-200 ease-in-out hover:bg-opacity-5 border-2 border-white/0 hover:border-gray-300
+    @apply flex-shrink-0 bg-cover bg-top bg-no-repeat rounded-md mb-2 transition-all duration-200 ease-in-out bg-transparent
   }
 
   .cart_playbtn {
