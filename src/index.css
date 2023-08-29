@@ -86,11 +86,11 @@
   }
 
   .carousel_controller {
-    @apply hidden md:flex flex-row gap-3 md:gap-6 absolute top-0 right-0
+    @apply hidden md:flex flex-row gap-3 md:gap-6
   }
 
   .carousel_contents {
-    @apply w-full flex flex-row gap-4 overflow-x-auto pb-2 px-4 md:px-0
+    @apply max-w-7xl flex flex-row gap-4 overflow-x-auto pb-2 px-4 mx-auto
   }
 
   .carousel_item {
@@ -98,6 +98,6 @@
   }
 
   .cart_playbtn {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-in text-white drop-shadow-xl group-hover/card:scale-125 group-hover/card:text-yellow-400
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-in text-white drop-shadow-xl group-hover/card:text-yellow-400 cursor-pointer hover:scale-125 active:scale-100
   }
 }
