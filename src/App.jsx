@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getApiConfiguration } from './store/homeSlice';
 
 // Calling API
@@ -26,12 +26,15 @@ export default function App() {
 
   const fetchApiConfig = async () => {
     getDataFromApi("/configuration").then((res) => {
+
+      const baseUrl = res?.images?.secure_base_url;
       const url = {
-        backdrop_w1280: res?.images?.secure_base_url + "w1280",
-        backdrop_w780: res?.images?.secure_base_url + "w780",
-        backdrop_w300: res?.images?.secure_base_url + "w300",
-        poster: res?.images?.secure_base_url + "w342",
-        profile: res?.images?.secure_base_url + "w185",
+        backdrop_w1280: baseUrl + "w1280",
+        backdrop_w780: baseUrl + "w780",
+        backdrop_w300: baseUrl + "w300",
+        poster: baseUrl + "w342",
+        poster_w342: baseUrl + "w342",
+        profile: baseUrl + "w185",
       };
 
       dispatch(getApiConfiguration(url))

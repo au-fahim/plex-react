@@ -30,12 +30,13 @@ export default function MoviePlayCard() {
         title={"Featured Movies"}
         videoPlayableCard={true}
         getBgPath={getBgPath}
+        mediaType={"movie"}
       />
 
       {!loading && (
         <div
           className="absolute w-full top-0 left-0 h-full -z-30 bg-center bg-cover bg-no-repeat duration-300 ease-out"
-          style={{backgroundImage: `url(${randomBg})`}}
+          style={{ backgroundImage: `url(${randomBg})` }}
         />
       )}
     </section>

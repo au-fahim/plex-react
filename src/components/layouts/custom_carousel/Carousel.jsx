@@ -1,22 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useRef, useState } from "react";
 import { HiChevronLeft, HiChevronRight, HiPlay } from "react-icons/hi2";
 
-import Img from "./../../ui/Img";
 import MainWrapper from "../MainWrapper";
 import useFetch from "../../../hooks/useFetch";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import dayjs from "dayjs";
+import CarouselItem from "./CarouseItem";
+
 
 export default function Carousel({
   title,
   endpoints,
   videoPlayableCard,
   getBgPath,
+  mediaType,
 }) {
   const { data, loading } = useFetch(endpoints);
-  const { url } = useSelector((state) => state.home);
   const carouselContainer = useRef();
 
   // Carousel Left & Right Scroll Function
@@ -54,15 +53,15 @@ export default function Carousel({
     <>
       <div className="overflow-hidden relative group w-full">
         {/* CAROUSEL HEADER SECTION */}
-        {loading && !title ? (
-          <SkeletonTheme baseColor="#202020" highlightColor="#fff">
-            <div className="mx-4 md:mx-0 w-48 lg:w-60 mb-4 animate-pulse duration-0 delay-0">
-              <Skeleton height={30} />
-            </div>
-          </SkeletonTheme>
-        ) : (
-          <MainWrapper>
-          <header className="carousel_header">
+        <MainWrapper>
+          {loading ? (
+            <SkeletonTheme baseColor="#202020" highlightColor="#fff">
+              <div className="mx-4 md:mx-0 w-48 lg:w-60 mb-4 animate-pulse duration-0 delay-0">
+                <Skeleton height={30} />
+              </div>
+            </SkeletonTheme>
+          ) : (
+            <header className="carousel_header">
               <h1
                 className={`carousel_title ${
                   !!videoPlayableCard && "text-2xl sm:text-3xl 2xl:text-4xl"
@@ -86,16 +85,16 @@ export default function Carousel({
                   <HiChevronRight size={22} />
                 </button>
               </div>
-          </header>
-          </MainWrapper>
-        )}
+            </header>
+          )}
+        </MainWrapper>
 
         {/* CAROUSEL ITEMS CONTAINER */}
         <section>
           {loading ? (
             <SkeletonTheme baseColor="#202020" highlightColor="#fff">
               <div
-                className={`w-full flex flex-row flex-nowrap mx-4 md:mx-0 gap-4 animate-pulse duration-0 delay-0`}
+                className={`w-full flex flex-row px-4 mx-auto gap-4 animate-pulse max-w-7xl overflow-auto`}
               >
                 {customSkeleton()}
                 {customSkeleton()}
@@ -108,74 +107,20 @@ export default function Carousel({
               </div>
             </SkeletonTheme>
           ) : (
-            <div
-              className="carousel_contents"
-              ref={carouselContainer}
-            >
+            <div className="carousel_contents" ref={carouselContainer}>
               {data?.results?.map((item, index) => {
                 let releaseDate = item?.release_date || item?.first_air_date;
 
                 return (
-                  <div
+                  <CarouselItem
                     key={index}
-                    onMouseEnter={() =>
-                      videoPlayableCard && getBgPath(item?.backdrop_path)
-                    }
-                    className={`carousel_item group/card overflow-hidden ${
-                      !!videoPlayableCard
-                        ? "shadow-md w-11/12 sm:w-1/2 md:w-1/3 relative hover:scale-95"
-                        : "w-2/5 sm:w-1/4 md:w-1/5 lg:w-1/6 xl:w-52"
-                    }`}
-                  >
-                    {/* CAROUSEL ITEM IMAGE */}
-                    <div className="relative">
-                      <Img
-                        src={
-                          !!videoPlayableCard
-                            ? url?.backdrop_w780 + item?.backdrop_path
-                            : url?.poster + item?.poster_path
-                        }
-                        alt={item?.title || item?.name}
-                        className={`rounded-md h-full border-2 border-white/0 transition duration-200 ease-in-out ${
-                          !videoPlayableCard && "hover:border-gray-300"
-                        }`}
-                      />
-                      <div>
-                        <HiPlay
-                          size={40}
-                          className={`cart_playbtn ${loading && "hidden"}`}
-                        />
-                      </div>
-                    </div>
-
-                    {/* CAROUSEL ITEM TITLE */}
-                    <div
-                      className={`w-full ${
-                        videoPlayableCard &&
-                        "absolute bottom-2 bg-gradient-to-t from-20% from-black/80 to-black/0 select-none"
-                      }`}
-                    >
-                      <article
-                        className={`text-white px-1 mb-2 ${
-                          videoPlayableCard && "mx-4 mb-4"
-                        }`}
-                      >
-                        <h1 className="font-medium text-sm md:text-lg line-clamp-1">
-                          {item?.title || item?.name}
-                        </h1>
-                        <p className="text-xs md:text-sm text-gray-300">
-                          {dayjs(releaseDate).format("D  MMM, YYYY")}
-                        </p>
-                      </article>
-                    </div>
-
-                    {!!videoPlayableCard && (
-                      <HiPlay
-                        size={56}
-                        className={`cart_playbtn ${loading && "hidden"}`}
-                      />
-                    )}
-                  </div>
+                    item={item}
+                    loading={loading}
+                    getBgPath={getBgPath}
+                    releaseDate={releaseDate}
+                    videoPlayableCard={videoPlayableCard}
+                    mediaType={mediaType}
+                  />
                 );
               })}
             </div>

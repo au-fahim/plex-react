@@ -14,7 +14,7 @@ import { HiPlay } from "react-icons/hi2";
 
 
 export default function HomeBanner() {
-  const [randomBg, setRandomBg] = useState("")
+  const [randomBg, setRandomBg] = useState(null)
   const [randomVideo, setRandomVideo] = useState(null)
   
   const { data, loading } = useFetch("/movie/upcoming")

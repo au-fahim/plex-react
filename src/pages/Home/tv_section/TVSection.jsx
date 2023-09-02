@@ -7,8 +7,16 @@ export default function TvSection() {
 
   return (
     <section className="py-16 flex flex-col gap-6 md:gap-10 overflow-hidden">
-      <Carousel endpoints={"/tv/popular"} title={"Popular TV Shows"} />
-      <Carousel endpoints={"/tv/top_rated"} title={"Top Rated TV Shows"} />
+      <Carousel
+        endpoints={"/tv/popular"}
+        title={"Popular TV Shows"}
+        mediaType={"tv"}
+      />
+      <Carousel
+        endpoints={"/tv/top_rated"}
+        title={"Top Rated TV Shows"}
+        mediaType={"tv"}
+      />
 
       <div className="flex flex-row justify-center mt-4">
         <button
