@@ -44,7 +44,7 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-        <div className='flex flex-col justify-between min-h-screen'>
+        <div className='overflow-hidden flex flex-col justify-between min-h-screen'>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />

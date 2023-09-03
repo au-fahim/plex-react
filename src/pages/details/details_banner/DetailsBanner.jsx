@@ -1,15 +1,17 @@
+import dayjs from "dayjs";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from 'react-router-dom';
+import { HiPlay } from "react-icons/hi2";
+
 import useFetch from "../../../hooks/useFetch";
-import MainWrapper from "../../../components/layouts/MainWrapper";
 import Spinner from "../../../components/ui/Spinner";
+import CircleRating from "../../../components/ui/CircleRating";
+import MainWrapper from "../../../components/layouts/MainWrapper";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { HiPlay, HiStar } from "react-icons/hi2";
-import { useParams } from 'react-router-dom';
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import dayjs from "dayjs";
 
 export default function DetaislBanner({ video, crew }) {
   const [showModal, setShowModal] = useState(false)
@@ -29,7 +31,7 @@ export default function DetaislBanner({ video, crew }) {
   );
 
 
-  const videoPosterPath = url?.poster_w342 + data?.poster_path;
+  const posterPath = url?.poster_w342 + data?.poster_path;
   const videoBgPath = url?.backdrop_w1280 + data?.backdrop_path;
 
   const durationTime = () => {
@@ -43,18 +45,18 @@ export default function DetaislBanner({ video, crew }) {
     <>
       <section className="overflow-hidden pb-10 pt-16 relative bg-gradient-to-t from-[#191919] from-10% to-[#191919b0] md:bg-[radial-gradient(ellipse_at_top,_#191919b0,_#191919_60%)]">
         <MainWrapper>
-          <div className="h-max lg:h-[560px] 2xl:h-[680px] overflow-hidden flex felx-col items-center">
+          <div className="h-max overflow-hidden flex felx-col items-center">
             {/* SECTION WRAPPER */}
             <div className="w-full grid grid-cols-1 md:grid-cols-6 items-start xl:items-center gap-10 px-4 md:px-0">
               {/* LEFT SECTION */}
-              <div className="mt-8 xl:mt-0 max-w-xs mx-auto md:col-span-2">
+              <div className="w-full mt-8 xl:mt-0 max-w-sm mx-auto md:col-span-2">
                 {loading ? (
-                  <div className="w-full h-full animate-pulse duration-0 delay-0">
-                    <Skeleton height={520} baseColor="#5c5c5c" />
+                  <div className="h-full w-full animate-pulse duration-0 delay-0">
+                    <Skeleton baseColor="#5c5c5c" height={420} width={280} />
                   </div>
                 ) : (
                   <img
-                    src={videoPosterPath}
+                    src={!!posterPath ? posterPath : ""}
                     alt={data?.name || data?.title}
                     className="rounded-lg w-full shadow-lg"
                   />
@@ -72,7 +74,7 @@ export default function DetaislBanner({ video, crew }) {
                 ) : (
                   <div className="text-white flex flex-col gap-2">
                     <h1
-                      className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-bold line-clamp-2 md:leading-loose"
+                      className="text-3xl sm:text-4xl lg:text-5xl font-bold line-clamp-2 md:leading-snug lg:leading-snug 2xl:leading-snug"
                       title={data?.title || data?.name}
                     >
                       {data?.title || data?.name}
@@ -83,22 +85,28 @@ export default function DetaislBanner({ video, crew }) {
                   </div>
                 )}
 
-                <div className="flex flex-row flex-wrap gap-6 md:gap-10 items-center">
+                <div className="flex flex-row flex-wrap gap-4 md:gap-6 items-center">
                   {loading ? (
                     <div className="w-20 animate-pulse">
-                      <Skeleton baseColor="#5c5c5c" height={40} />
+                      <Skeleton
+                        circle
+                        baseColor="#5c5c5c"
+                        height={48}
+                        width={48}
+                      />
                     </div>
                   ) : (
                     <div className="text-white flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 rounded-lg text-base lg:text-xl">
-                      <div className="py-2 px-2 rounded-full bg-black/60 text-yellow-500 text-xl md:text-2xl">
-                        <HiStar />
+                      <div className="w-14">
+                        <CircleRating rating={data?.vote_average.toFixed(1)} />
                       </div>
-                      <p>
+
+                      {/* <p>
                         <span className="font-bold">
                           {data?.vote_average.toFixed(1)}{" "}
                         </span>
                         <span className="text-gray-400">/10</span>
-                      </p>
+                      </p> */}
                     </div>
                   )}
 

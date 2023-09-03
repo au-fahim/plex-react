@@ -46,7 +46,7 @@ export default function HomeBanner() {
               </SkeletonTheme>
             ) : (
               <h1
-                className="text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl font-bold line-clamp-2"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold line-clamp-2 md:leading-snug lg:leading-snug 2xl:leading-snug"
                 title={randomVideo?.title}
               >
                 {randomVideo?.title}
@@ -61,7 +61,7 @@ export default function HomeBanner() {
               </SkeletonTheme>
             ) : (
               <p
-                className="mb-2 text-gray-400 text-sm md:text-base lg:text-lg 2xl:text-xl line-clamp-3"
+                className="mb-4 text-gray-400 text-sm md:text-base lg:text-lg 2xl:text-xl leading-normal line-clamp-3"
                 title={randomVideo?.overview}
               >
                 {randomVideo?.overview}
@@ -76,7 +76,7 @@ export default function HomeBanner() {
               </SkeletonTheme>
             ) : (
               <button className="btn_md primary_btn flex flex-row items-center gap-2">
-                  <HiPlay /> Watch Now
+                <HiPlay /> Watch Now
               </button>
             )}
           </div>
