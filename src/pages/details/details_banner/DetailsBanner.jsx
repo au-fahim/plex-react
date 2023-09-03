@@ -11,6 +11,7 @@ import MainWrapper from "../../../components/layouts/MainWrapper";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Img from "../../../components/ui/Img";
 
 
 export default function DetaislBanner({ video, crew }) {
@@ -49,13 +50,13 @@ export default function DetaislBanner({ video, crew }) {
             {/* SECTION WRAPPER */}
             <div className="w-full grid grid-cols-1 md:grid-cols-6 items-start xl:items-center gap-10 px-4 md:px-0">
               {/* LEFT SECTION */}
-              <div className="w-full mt-8 xl:mt-0 max-w-sm mx-auto md:col-span-2">
+              <div className="lazy_img_wrapper w-full mt-8 xl:mt-0 max-w-sm mx-auto md:col-span-2">
                 {loading ? (
                   <div className="h-full w-full animate-pulse duration-0 delay-0">
                     <Skeleton baseColor="#5c5c5c" height={420} width={280} />
                   </div>
                 ) : (
-                  <img
+                  <Img
                     src={!!posterPath ? posterPath : ""}
                     alt={data?.name || data?.title}
                     className="rounded-lg w-full shadow-lg"
@@ -87,17 +88,17 @@ export default function DetaislBanner({ video, crew }) {
 
                 <div className="flex flex-row flex-wrap gap-4 md:gap-6 items-center">
                   {loading ? (
-                    <div className="w-20 animate-pulse">
+                    <div className="animate-pulse">
                       <Skeleton
                         circle
                         baseColor="#5c5c5c"
-                        height={48}
-                        width={48}
+                        height={50}
+                        width={50}
                       />
                     </div>
                   ) : (
                     <div className="text-white flex flex-row flex-wrap justify-center items-center gap-2 md:gap-4 rounded-lg text-base lg:text-xl">
-                      <div className="w-14">
+                      <div className="w-14 md:w-20">
                         <CircleRating rating={data?.vote_average.toFixed(1)} />
                       </div>
 

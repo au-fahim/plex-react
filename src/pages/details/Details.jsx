@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import DetaislBanner from './details_banner/DetailsBanner';
+import Cast from './cast/Cast';
 
 export default function Details() {
   const { mediaType, id } = useParams();
@@ -20,6 +21,8 @@ export default function Details() {
   return (
     <>
       <DetaislBanner video={officialVideo} crew={credits?.crew} />
+      <Cast castData={credits?.cast} loading={creditsLoading
+      } />
     </>
   );
 }

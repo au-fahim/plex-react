@@ -22,6 +22,11 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation()
 
+  // Set Scroll Bar on Top for if url location changed
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location])
+
   useEffect(() => {
     setShowSearchResultModal(false)
   }, [location])

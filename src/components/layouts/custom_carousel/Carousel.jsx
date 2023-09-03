@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { HiChevronLeft, HiChevronRight, HiPlay } from "react-icons/hi2";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
 import MainWrapper from "../MainWrapper";
 import useFetch from "../../../hooks/useFetch";

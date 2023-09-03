@@ -7,6 +7,12 @@
     @apply bg-black/90
   }
 
+  img {
+    @apply w-full h-full object-cover block rounded-md
+  }
+
+  /* span {} */
+
   /* width */
   ::-webkit-scrollbar {
     @apply h-2 w-2
@@ -99,5 +105,13 @@
 
   .cart_playbtn {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-in-out text-white drop-shadow-xl hover:text-yellow-400 cursor-pointer hover:scale-125 active:scale-100 md:opacity-0 md:group-hover/card:opacity-100
+  }
+
+  .cast_img > span {
+    @apply w-full
+  }
+
+  .lazy_img_wrapper > span {
+    @apply w-full
   }
 }
