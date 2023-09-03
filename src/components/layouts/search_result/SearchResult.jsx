@@ -87,7 +87,10 @@ export default function SearchResult({ queryText, setShowSearchResultModal }) {
 
                   return (
                     <div
-                      key={index}
+                      key={item?.id}
+                      onClick={() =>
+                        navigate(`/${item?.media_type}/${item?.id}`)
+                      }
                       className="w-full py-2 px-2 flex flex-row gap-3 items-center rounded-md transition duration-150 hover:bg-white/20"
                     >
                       <img

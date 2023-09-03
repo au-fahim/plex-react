@@ -63,9 +63,9 @@ export default function CarouselItem({
             !videoPlayableCard && "hover:border-gray-300"
           }`}
         />
-        <div>
+        {/* <div>
           <HiPlay size={44} className={`cart_playbtn ${loading && "hidden"}`} />
-        </div>
+        </div> */}
       </div>
 
       {/* CAROUSEL ITEM TITLE */}

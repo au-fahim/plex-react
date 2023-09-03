@@ -67,7 +67,7 @@ export default function Carousel({
                   !!videoPlayableCard && "text-2xl sm:text-3xl 2xl:text-4xl"
                 }`}
               >
-                {title}
+                {data?.results?.length > 0 && title}
               </h1>
 
               {/* CAROUSEL LEFT & RIGHT SCROLLING CONTROLLER */}

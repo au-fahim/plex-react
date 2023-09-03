@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Carousel from "../../../components/layouts/custom_carousel/Carousel";
 
 
-export default function MovieSection() {
+export default function   MovieSection() {
   const navigate = useNavigate();
 
   return (

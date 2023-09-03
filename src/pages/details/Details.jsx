@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import DetaislBanner from './details_banner/DetailsBanner';
 import Cast from './cast/Cast';
+import SimilarContents from './similar_contents/SimilarContents';
+import Recommendation from './recommendation/Recommendation';
 
 export default function Details() {
   const { mediaType, id } = useParams();
@@ -14,15 +16,16 @@ export default function Details() {
   const officialVideo = videos?.results?.find(
     (result) => result?.type === "Trailer"
   );
-
-  console.log(credits);
   
 
   return (
     <>
       <DetaislBanner video={officialVideo} crew={credits?.crew} />
-      <Cast castData={credits?.cast} loading={creditsLoading
-      } />
+      <Cast castData={credits?.cast} loading={creditsLoading} />
+      <br />
+      <SimilarContents mediaType={mediaType} id={id} />
+      <br />
+      <Recommendation mediaType={mediaType} id={id} />
     </>
   );
 }

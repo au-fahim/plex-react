@@ -11,6 +11,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Spinner from "../../../components/ui/Spinner";
 import { HiPlay } from "react-icons/hi2";
+import { useNavigate } from "react-router";
 
 
 export default function HomeBanner() {
@@ -20,6 +21,8 @@ export default function HomeBanner() {
   const { data, loading } = useFetch("/movie/upcoming")
   const { url } = useSelector((state) => state.home)
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     const randomNum = Math.floor(Math.random() * 19)
     
@@ -27,7 +30,6 @@ export default function HomeBanner() {
     const bg_path =
       url?.backdrop_w1280 + data?.results?.[randomNum]?.backdrop_path;
     
-    console.log(randomOne);
     setRandomBg(bg_path)
     setRandomVideo(randomOne)
   }, [data])
@@ -75,7 +77,12 @@ export default function HomeBanner() {
                 </div>
               </SkeletonTheme>
             ) : (
-              <button className="btn_md primary_btn flex flex-row items-center gap-2">
+              <button
+                onClick={() =>
+                  navigate(`/movie/${randomVideo?.id}`)
+                }
+                className="btn_md primary_btn flex flex-row items-center gap-2"
+              >
                 <HiPlay /> Watch Now
               </button>
             )}
