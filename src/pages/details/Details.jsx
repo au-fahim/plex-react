@@ -1,10 +1,13 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import Cast from './cast/Cast';
 import useFetch from '../../hooks/useFetch';
 import DetaislBanner from './details_banner/DetailsBanner';
-import Cast from './cast/Cast';
-import SimilarContents from './similar_contents/SimilarContents';
-import Recommendation from './recommendation/Recommendation';
 import VideosSection from './videos_section/VideosSection';
+import Recommendation from './recommendation/Recommendation';
+import SimilarContents from './similar_contents/SimilarContents';
+import VideoPopup from '../../components/layouts/video_popup/VideoPopup';
 
 export default function Details() {
   const { mediaType, id } = useParams();
@@ -17,6 +20,9 @@ export default function Details() {
   const officialVideo = videos?.results?.find(
     (result) => result?.type === "Trailer"
   );
+
+  const { showVideoPopup, videoId } = useSelector((state) => state.videoPopup);
+
   
 
   return (
@@ -29,6 +35,9 @@ export default function Details() {
       <SimilarContents mediaType={mediaType} id={id} />
       <br />
       <Recommendation mediaType={mediaType} id={id} />
+
+      {/* Show Video Popup Modal */}
+      <VideoPopup showVideoPopup={showVideoPopup} videoId={videoId} />
     </>
   );
 }

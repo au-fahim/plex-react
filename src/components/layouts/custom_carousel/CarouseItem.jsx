@@ -42,9 +42,9 @@ export default function CarouselItem({
   return (
     <div
       key={id}
-      onClick={() => navigate(`${mediaType}/${id}`)}
+      onClick={() => navigate(`/${mediaType}/${id}`)}
       onMouseEnter={() => videoPlayableCard && getBgPath(backdrop_path)}
-      className={`carousel_item group/card overflow-hidden rounded-md ${
+      className={`carousel_item group/card overflow-hidden rounded-md cursor-pointer ${
         !!videoPlayableCard
           ? "w-11/12 sm:w-1/2 md:w-1/3 relative hover:scale-95"
           : "w-2/5 sm:w-1/4 md:w-1/5 lg:w-1/6 xl:w-52"

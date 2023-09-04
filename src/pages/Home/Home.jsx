@@ -24,7 +24,7 @@ export default function Home() {
       </main>
 
       {/* Show Video Popup Modal */}
-      <VideoPopup showVideoPopup={showVideoPopup} videoId={videoId} />
+      {/* <VideoPopup showVideoPopup={showVideoPopup} videoId={videoId} /> */}
     </>
   );
 }
