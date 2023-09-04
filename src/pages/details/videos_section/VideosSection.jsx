@@ -1,18 +1,18 @@
 import { useRef } from "react";
 import { useSelector } from "react-redux";
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import { HiChevronLeft, HiChevronRight, HiPlay } from "react-icons/hi2";
 
-import Img from "../../../components/ui/Img";
-import MainWrapper from './../../../components/layouts/MainWrapper';
-
-
-import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+import MainWrapper from "../../../components/layouts/MainWrapper";
+import Img from "../../../components/ui/Img";
+import dayjs from "dayjs";
 
 
 
-export default function Cast({ castData, loading }) {
-  const { url } = useSelector((state) => state.home)
+export default function VideosSection({ videos, loading }) {
+  const { url } = useSelector((state) => state.home);
 
   const carouselContainer = useRef();
 
@@ -43,6 +43,19 @@ export default function Cast({ castData, loading }) {
     );
   };
 
+  // API STRUCTURE EXAMPLE
+  // id: "64c42e7441aac400aef083b3";
+  // iso_639_1: "en";
+  // iso_3166_1: "US";
+  // key: "eKl7NyhV6VA";
+  // name: "John Wick 4 - The Apartment Massacre - VFX Breakdown by Rodeo FX";
+  // official: false;
+  // published_at: "2023-07-18T12:58:09.000Z";
+  // site: "YouTube";
+  // size: 1080;
+  // type: "Featurette";
+
+
   return (
     <>
       <div className="overflow-hidden relative group w-full">
@@ -56,7 +69,7 @@ export default function Cast({ castData, loading }) {
             </SkeletonTheme>
           ) : (
             <header className="carousel_header">
-              <h1 className="carousel_title">Top Cast</h1>
+              <h1 className="carousel_title">Official Videos</h1>
 
               {/* CAROUSEL LEFT & RIGHT SCROLLING CONTROLLER */}
               <div className="carousel_controller">
@@ -96,15 +109,33 @@ export default function Cast({ castData, loading }) {
             </SkeletonTheme>
           ) : (
             <div className="carousel_contents" ref={carouselContainer}>
-              {castData?.map((cast) => (
-                <div key={cast.id} className="w-4/12 sm:w-3/12 md:w-2/12 flex-shrink-0 rounded-lg cursor-pointer flex flex-col md:gap-2 pb-2 overflow-hidden select-none group/title">
-                  <div className="cast_img w-full rounded-lg overflow-hidden">
-                    <Img src={url?.profile + cast?.profile_path} />
+              {videos?.results?.map((video) => (
+                <div
+                  key={video.id}
+                  className="w-11/12 sm:w-1/3 lg:w-3/12 flex-shrink-0 rounded-lg cursor-pointer flex flex-col md:gap-2 pb-2 overflow-hidden select-none group/playbtn group/title"
+                >
+                  <div className="cast_img w-full rounded-lg overflow-hidden relative">
+                    <Img
+                      src={`https://i.ytimg.com/vi/${video.key}/mqdefault.jpg`}
+                    />
+
+                    <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center">
+                      <HiPlay
+                        size={50}
+                        className={`text-white group-hover/playbtn:text-yellow-500 group-hover/playbtn:scale-125 active:scale-100 transition ${
+                          loading && "hidden"
+                        }`}
+                      />
+                    </div>
                   </div>
 
-                  <h1 className="flex flex-col gap-px px-2">
-                    <strong className="text-white text-base md:text-lg 2xl:text-xl line-clamp-2 group-hover/title:underline">{cast.name}</strong>
-                    <span className="text-gray-400 text-xs md:text-sm xl:text-base line-clamp-1">{cast.character}</span>
+                  <h1 className="flex flex-col gap-1 px-2">
+                    <strong className="text-gray-100 text-base md:text-lg line-clamp-2 group-hover/title:underline">
+                      {video.name}
+                    </strong>
+                    <span className="text-gray-400 text-xs md:text-sm xl:text-base line-clamp-1">
+                      {dayjs(video.published_at).format("DD MMM, YYYY")}
+                    </span>
                   </h1>
                 </div>
               ))}

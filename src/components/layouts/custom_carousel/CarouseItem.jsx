@@ -78,7 +78,7 @@ export default function CarouselItem({
         <article
           className={`text-white px-1 mb-2 ${videoPlayableCard && "mx-4 mb-4"}`}
         >
-          <h1 className="font-medium text-sm md:text-lg line-clamp-1">
+          <h1 className="font-medium text-sm md:text-lg line-clamp-1 group-hover/card:underline">
             {title || name}
           </h1>
           <p className="text-xs md:text-sm text-gray-300">

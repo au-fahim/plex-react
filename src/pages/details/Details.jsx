@@ -4,6 +4,7 @@ import DetaislBanner from './details_banner/DetailsBanner';
 import Cast from './cast/Cast';
 import SimilarContents from './similar_contents/SimilarContents';
 import Recommendation from './recommendation/Recommendation';
+import VideosSection from './videos_section/VideosSection';
 
 export default function Details() {
   const { mediaType, id } = useParams();
@@ -21,6 +22,8 @@ export default function Details() {
   return (
     <>
       <DetaislBanner video={officialVideo} crew={credits?.crew} />
+      <VideosSection videos={videos} loading={videoLoading} />
+      <br />
       <Cast castData={credits?.cast} loading={creditsLoading} />
       <br />
       <SimilarContents mediaType={mediaType} id={id} />
