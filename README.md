@@ -1,8 +1,13 @@
-# React + Vite
+# This Website Provides information about millions of films & television programs as well as their cast, crew, videos.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Used Technology in this project
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Axios, 
+React.js, 
+Redux, 
+Custom 
+Carousel, 
+Tailwind CSS, 
+React-Router, 
+Custom Skeleton, 
+Vite Compiler.
