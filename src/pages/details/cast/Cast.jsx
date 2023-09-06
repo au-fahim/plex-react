@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
 import Img from "../../../components/ui/Img";
+import thumbImg from "/no_img.png";
 import MainWrapper from './../../../components/layouts/MainWrapper';
 
 
@@ -97,25 +98,39 @@ export default function Cast({ castData, loading }) {
               </SkeletonTheme>
             ) : (
               <div className="carousel_contents" ref={carouselContainer}>
-                {castData?.map((cast) => (
-                  <div
-                    key={cast.id}
-                    className="w-4/12 sm:w-3/12 md:w-2/12 flex-shrink-0 rounded-lg cursor-pointer flex flex-col md:gap-2 pb-2 overflow-hidden select-none group/title"
-                  >
-                    <div className="cast_img w-full rounded-lg overflow-hidden">
-                      <Img src={url?.profile + cast?.profile_path} />
-                    </div>
+                {castData?.map((cast) => {
+                  console.log(cast?.profile_path);
+                  return (
+                    <div
+                      key={cast.id}
+                      className="w-4/12 sm:w-3/12 md:w-2/12 flex-shrink-0 rounded-lg cursor-pointer flex flex-col md:gap-2 pb-2 overflow-hidden select-none group/title"
+                    >
+                      {cast?.profile_path === null ? (
+                        <img
+                          src={thumbImg}
+                          alt={cast.name}
+                          className="invert"
+                        />
+                      ) : (
+                        <div className="cast_img w-full rounded-lg overflow-hidden">
+                          <Img
+                            src={url?.profile + cast?.profile_path}
+                            alt={cast.name}
+                          />
+                        </div>
+                      )}
 
-                    <h1 className="flex flex-col gap-px px-2">
-                      <strong className="text-white text-base md:text-lg 2xl:text-xl line-clamp-2 group-hover/title:underline">
-                        {cast.name}
-                      </strong>
-                      <span className="text-gray-400 text-xs md:text-sm xl:text-base line-clamp-1">
-                        {cast.character}
-                      </span>
-                    </h1>
-                  </div>
-                ))}
+                      <h1 className="flex flex-col gap-px px-2">
+                        <strong className="text-white text-base md:text-lg 2xl:text-xl line-clamp-2 group-hover/title:underline">
+                          {cast.name}
+                        </strong>
+                        <span className="text-gray-400 text-xs md:text-sm xl:text-base line-clamp-1">
+                          {cast.character}
+                        </span>
+                      </h1>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </section>

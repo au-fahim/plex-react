@@ -8,6 +8,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import CarouselItem from "./CarouseItem";
 
 
+
 export default function Carousel({
   title,
   endpoints,

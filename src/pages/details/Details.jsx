@@ -7,7 +7,8 @@ import DetaislBanner from './details_banner/DetailsBanner';
 import VideosSection from './videos_section/VideosSection';
 import Recommendation from './recommendation/Recommendation';
 import SimilarContents from './similar_contents/SimilarContents';
-import VideoPopup from '../../components/layouts/video_popup/VideoPopup';
+
+
 
 export default function Details() {
   const { mediaType, id } = useParams();

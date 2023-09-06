@@ -8,6 +8,11 @@ import { setShowVideoPopup, setVideoId } from "../../../store/videoPoupuSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
+
+import thumbImg from "/no_img.png";
+
+
+
 export default function CarouselItem({
   item,
   loading,
@@ -52,17 +57,22 @@ export default function CarouselItem({
     >
       {/* CAROUSEL ITEM IMAGE */}
       <div className="relative">
-        <Img
-          src={
-            !!videoPlayableCard
-              ? url?.backdrop_w780 + backdrop_path
-              : url?.poster + poster_path
-          }
-          alt={title || name}
-          className={`rounded-md h-full border-2 border-white/0 transition duration-200 ease-in-out ${
-            !videoPlayableCard && "hover:border-gray-300"
-          }`}
-        />
+        {(backdrop_path || poster_path) ?? null !== null ? (
+          <Img
+            src={
+              !!videoPlayableCard
+                ? url?.backdrop_w780 + backdrop_path
+                : url?.poster + poster_path
+            }
+            alt={title || name}
+            className={`rounded-md h-full border-2 border-white/0 transition duration-200 ease-in-out ${
+              !videoPlayableCard && "hover:border-gray-300"
+            }`}
+          />
+        ) : (
+          <img src={thumbImg} alt={title || name} className="invert" />
+        )}
+
         {/* <div>
           <HiPlay size={44} className={`cart_playbtn ${loading && "hidden"}`} />
         </div> */}

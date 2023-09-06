@@ -13,6 +13,9 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import Img from "../../../components/ui/Img";
 
+import thumbImg from "/no_img.png";
+
+
 
 export default function DetaislBanner({ video, crew }) {
   const [showModal, setShowModal] = useState(false)
@@ -56,11 +59,21 @@ export default function DetaislBanner({ video, crew }) {
                     <Skeleton baseColor="#5c5c5c" height={420} width={280} />
                   </div>
                 ) : (
-                  <Img
-                    src={!!posterPath ? posterPath : ""}
-                    alt={data?.name || data?.title}
-                    className="rounded-lg w-full shadow-lg"
-                  />
+                  <>
+                    {posterPath === null ? (
+                      <img
+                        src={thumbImg}
+                        alt={data?.name || data?.title}
+                        className="invert"
+                      />
+                    ) : (
+                      <Img
+                        src={!!posterPath ? posterPath : ""}
+                        alt={data?.name || data?.title}
+                        className="rounded-lg w-full shadow-lg"
+                      />
+                    )}
+                  </>
                 )}
               </div>
 
