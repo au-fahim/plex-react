@@ -21,23 +21,26 @@ export default function Details() {
     (result) => result?.type === "Trailer"
   );
 
-  const { showVideoPopup, videoId } = useSelector((state) => state.videoPopup);
+  // const { showVideoPopup, videoId } = useSelector((state) => state.videoPopup);
 
   
 
   return (
     <>
       <DetaislBanner video={officialVideo} crew={credits?.crew} />
-      <VideosSection videos={videos} loading={videoLoading} />
-      <br />
-      <Cast castData={credits?.cast} loading={creditsLoading} />
-      <br />
-      <SimilarContents mediaType={mediaType} id={id} />
-      <br />
-      <Recommendation mediaType={mediaType} id={id} />
+      
+        <div className="flex flex-col gap-4">
+          <VideosSection videos={videos} loading={videoLoading} />
+          <Cast castData={credits?.cast} loading={creditsLoading} />
+        </div>
+
+        <div className="flex flex-col gap-10 my-10">
+          <SimilarContents mediaType={mediaType} id={id} />
+          <Recommendation mediaType={mediaType} id={id} />
+        </div>
 
       {/* Show Video Popup Modal */}
-      <VideoPopup showVideoPopup={showVideoPopup} videoId={videoId} />
+      {/* <VideoPopup showVideoPopup={showVideoPopup} videoId={videoId} /> */}
     </>
   );
 }

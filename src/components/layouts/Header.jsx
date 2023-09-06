@@ -130,10 +130,10 @@ export default function Header() {
           <div className="hidden lg:flex flex-row items-center gap-4 text-gray-400 text-sm font-medium">
             {/* NAVIGATIONS */}
             <nav className="flex flex-row gap-6 pr-2">
-              <a>Free Movies & TV</a>
-              <a>Live TV</a>
-              <a>Features</a>
-              <a>Download</a>
+              <a>Movies</a>
+              <a>TV Shows</a>
+              <a>People</a>
+              <a>About</a>
             </nav>
 
             {/* USER LOGIN & PROFILE BUTTON */}

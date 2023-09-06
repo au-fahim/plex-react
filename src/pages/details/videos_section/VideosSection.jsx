@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { HiChevronLeft, HiChevronRight, HiPlay } from "react-icons/hi2";
 
@@ -8,11 +8,20 @@ import "react-loading-skeleton/dist/skeleton.css";
 import MainWrapper from "../../../components/layouts/MainWrapper";
 import Img from "../../../components/ui/Img";
 import dayjs from "dayjs";
+import VideoPopup from "../../../components/layouts/video_popup/VideoPopup";
 
 
 
 export default function VideosSection({ videos, loading }) {
   const { url } = useSelector((state) => state.home);
+
+  const [showVideoPopup, setShowVideoPopup] = useState(false)
+  const [videoId, setVideoId] = useState(null)
+  const showModal = (id) => {
+    setShowVideoPopup(true);
+    setVideoId(id);
+    document.body.style.overflowY = "hidden"
+  };
 
   const carouselContainer = useRef();
 
@@ -58,7 +67,7 @@ export default function VideosSection({ videos, loading }) {
 
   return (
     <>
-      <div className="overflow-hidden relative group w-full">
+      {videos?.results?.length > 0 && <div className="overflow-hidden relative group w-full">
         {/* CAROUSEL HEADER SECTION */}
         <MainWrapper>
           {loading ? (
@@ -112,6 +121,7 @@ export default function VideosSection({ videos, loading }) {
               {videos?.results?.map((video) => (
                 <div
                   key={video.id}
+                  onClick={() => showModal(video.key)}
                   className="w-11/12 sm:w-1/3 lg:w-3/12 flex-shrink-0 rounded-lg cursor-pointer flex flex-col md:gap-2 pb-2 overflow-hidden select-none group/playbtn group/title"
                 >
                   <div className="cast_img w-full rounded-lg overflow-hidden relative">
@@ -147,7 +157,15 @@ export default function VideosSection({ videos, loading }) {
         <div
           className={`bg-[#191919] absolute h-2 w-full bottom-0 left-0 transition-all duration-500 opacity-100 group-hover:opacity-0 group-hover:-z-50`}
         />
-      </div>
+      </div>}
+
+      {/* Show Video Popup Modal */}
+      <VideoPopup
+        showVideoPopup={showVideoPopup}
+        setShowVideoPopup={setShowVideoPopup}
+        videoId={videoId}
+        setVideoId={setVideoId}
+      />
     </>
   );
 }

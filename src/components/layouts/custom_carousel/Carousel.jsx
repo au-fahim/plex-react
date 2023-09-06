@@ -51,89 +51,91 @@ export default function Carousel({
 
   return (
     <>
-      <div className="overflow-hidden relative group w-full">
-        {/* CAROUSEL HEADER SECTION */}
-        <MainWrapper>
-          {loading ? (
-            <SkeletonTheme baseColor="#202020" highlightColor="#fff">
-              <div className="mx-4 md:mx-0 w-48 lg:w-60 mb-4 animate-pulse duration-0 delay-0">
-                <Skeleton height={30} />
-              </div>
-            </SkeletonTheme>
-          ) : (
-            <header className="carousel_header">
-              <h1
-                className={`carousel_title ${
-                  !!videoPlayableCard && "text-2xl sm:text-3xl 2xl:text-4xl"
-                }`}
-              >
-                {data?.results?.length > 0 && title}
-              </h1>
-
-              {/* CAROUSEL LEFT & RIGHT SCROLLING CONTROLLER */}
-              <div className="carousel_controller">
-                <button
-                  className="icon_btn rounded-md hover:bg-white/10"
-                  onClick={() => scrollDirection("left")}
+      {data?.results?.length > 0 && (
+        <div className="overflow-hidden relative group w-full">
+          {/* CAROUSEL HEADER SECTION */}
+          <MainWrapper>
+            {loading ? (
+              <SkeletonTheme baseColor="#202020" highlightColor="#fff">
+                <div className="mx-4 md:mx-0 w-48 lg:w-60 mb-4 animate-pulse duration-0 delay-0">
+                  <Skeleton height={30} />
+                </div>
+              </SkeletonTheme>
+            ) : (
+              <header className="carousel_header">
+                <h1
+                  className={`carousel_title ${
+                    !!videoPlayableCard && "text-2xl sm:text-3xl 2xl:text-4xl"
+                  }`}
                 >
-                  <HiChevronLeft size={22} />
-                </button>
-                <button
-                  className="icon_btn rounded-md hover:bg-white/10"
-                  onClick={() => scrollDirection("right")}
+                  {data?.results?.length > 0 && title}
+                </h1>
+
+                {/* CAROUSEL LEFT & RIGHT SCROLLING CONTROLLER */}
+                <div className="carousel_controller">
+                  <button
+                    className="icon_btn rounded-md hover:bg-white/10"
+                    onClick={() => scrollDirection("left")}
+                  >
+                    <HiChevronLeft size={22} />
+                  </button>
+                  <button
+                    className="icon_btn rounded-md hover:bg-white/10"
+                    onClick={() => scrollDirection("right")}
+                  >
+                    <HiChevronRight size={22} />
+                  </button>
+                </div>
+              </header>
+            )}
+          </MainWrapper>
+
+          {/* CAROUSEL ITEMS CONTAINER */}
+          <section>
+            {loading ? (
+              <SkeletonTheme baseColor="#202020" highlightColor="#fff">
+                <div
+                  className={`w-full flex flex-row px-4 mx-auto gap-4 animate-pulse max-w-7xl overflow-auto`}
                 >
-                  <HiChevronRight size={22} />
-                </button>
+                  {customSkeleton()}
+                  {customSkeleton()}
+                  {customSkeleton()}
+                  {customSkeleton()}
+                  {customSkeleton()}
+                  {customSkeleton()}
+                  {customSkeleton()}
+                  {customSkeleton()}
+                </div>
+              </SkeletonTheme>
+            ) : (
+              <div className="carousel_contents" ref={carouselContainer}>
+                {data?.results?.map((item, index) => {
+                  let releaseDate = item?.release_date || item?.first_air_date;
+
+                  return (
+                    <CarouselItem
+                      key={index}
+                      item={item}
+                      loading={loading}
+                      getBgPath={getBgPath}
+                      releaseDate={releaseDate}
+                      videoPlayableCard={videoPlayableCard}
+                      mediaType={mediaType}
+                    />
+                  );
+                })}
               </div>
-            </header>
-          )}
-        </MainWrapper>
+            )}
+          </section>
 
-        {/* CAROUSEL ITEMS CONTAINER */}
-        <section>
-          {loading ? (
-            <SkeletonTheme baseColor="#202020" highlightColor="#fff">
-              <div
-                className={`w-full flex flex-row px-4 mx-auto gap-4 animate-pulse max-w-7xl overflow-auto`}
-              >
-                {customSkeleton()}
-                {customSkeleton()}
-                {customSkeleton()}
-                {customSkeleton()}
-                {customSkeleton()}
-                {customSkeleton()}
-                {customSkeleton()}
-                {customSkeleton()}
-              </div>
-            </SkeletonTheme>
-          ) : (
-            <div className="carousel_contents" ref={carouselContainer}>
-              {data?.results?.map((item, index) => {
-                let releaseDate = item?.release_date || item?.first_air_date;
-
-                return (
-                  <CarouselItem
-                    key={index}
-                    item={item}
-                    loading={loading}
-                    getBgPath={getBgPath}
-                    releaseDate={releaseDate}
-                    videoPlayableCard={videoPlayableCard}
-                    mediaType={mediaType}
-                  />
-                );
-              })}
-            </div>
-          )}
-        </section>
-
-        {/* SCROLL BAR COVER */}
-        <div
-          className={`${
-            videoPlayableCard ? "bg-transparent" : "bg-[#191919]"
-          } absolute h-2 w-full bottom-0 left-0 transition-all duration-500 opacity-100 group-hover:opacity-0 group-hover:-z-50`}
-        />
-      </div>
+          {/* SCROLL BAR COVER */}
+          <div
+            className={`${
+              videoPlayableCard ? "bg-transparent" : "bg-[#191919]"
+            } absolute h-2 w-full bottom-0 left-0 transition-all duration-500 opacity-100 group-hover:opacity-0 group-hover:-z-50`}
+          />
+        </div>
+      )}
     </>
   );
 }
