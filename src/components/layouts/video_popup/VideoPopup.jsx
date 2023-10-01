@@ -37,7 +37,7 @@ export default function VideoPopup({ showVideoPopup, setShowVideoPopup, videoId,
             controls
             width="100%"
             height="100%"
-            playing={true}
+            playing={false}
           />
         </div>
       </div>

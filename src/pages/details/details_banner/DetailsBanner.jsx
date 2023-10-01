@@ -17,10 +17,7 @@ import thumbImg from "/no_img.png";
 
 
 
-export default function DetaislBanner({ video, crew }) {
-  const [showModal, setShowModal] = useState(false)
-  const [videoId, setVideoId] = useState(null)
-
+export default function DetaislBanner({ video, crew, showModal }) {
   const { url } = useSelector((state) => state.home)
 
   const { mediaType, id } = useParams();
@@ -33,6 +30,8 @@ export default function DetaislBanner({ video, crew }) {
       person.job === "Story" ||
       person.job === "Screenplay"
   );
+
+  console.log(video);
 
 
   const posterPath = url?.poster_w342 + data?.poster_path;
@@ -115,12 +114,9 @@ export default function DetaislBanner({ video, crew }) {
                         <CircleRating rating={data?.vote_average.toFixed(1)} />
                       </div>
 
-                      {/* <p>
-                        <span className="font-bold">
-                          {data?.vote_average.toFixed(1)}{" "}
-                        </span>
-                        <span className="text-gray-400">/10</span>
-                      </p> */}
+                      <span className="font-semibold md:font-bold">
+                        User <br /> Score
+                      </span>
                     </div>
                   )}
 
@@ -129,7 +125,10 @@ export default function DetaislBanner({ video, crew }) {
                       <Skeleton baseColor="#5c5c5c" height={40} />
                     </div>
                   ) : (
-                    <button className="btn_md primary_btn flex flex-row items-center gap-2">
+                    <button
+                      className="btn_md primary_btn flex flex-row items-center gap-2"
+                      onClick={() => showModal(video?.key)}
+                    >
                       <HiPlay /> Watch Now
                     </button>
                   )}
